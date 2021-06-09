@@ -35,11 +35,11 @@ namespace MyBanker
                 case Card.CardType.Mastercard:
                     return new Mastercard(LongRandom(10000000000000, 99999999999999, new Random()), LongRandom(100000000000, 999999999999, new Random()), _firstNames[new Random().Next(0, _firstNames.Length)] + " " + _lastNames[new Random().Next(0, _lastNames.Length)], DateTime.Now.AddYears(5));
                 case Card.CardType.Maestro:
-                    return new Maestro(); // 19 digits cardNumber
+                    return new Maestro(LongRandom(10000000000000, 99999999999999, new Random()), LongRandom(100000000000000, 999999999999999, new Random()), _firstNames[new Random().Next(0, _firstNames.Length)] + " " + _lastNames[new Random().Next(0, _lastNames.Length)], DateTime.MaxValue);
                 case Card.CardType.Visa:
-                    return new Visa();
+                    return new Visa(LongRandom(10000000000000, 99999999999999, new Random()), LongRandom(1000000000, 9999999999, new Random()), _firstNames[new Random().Next(0, _firstNames.Length)] + " " + _lastNames[new Random().Next(0, _lastNames.Length)], DateTime.Now.AddYears(5));
                 case Card.CardType.VisaElectron:
-                    return new VisaElectron();
+                    return new VisaElectron(LongRandom(10000000000000, 99999999999999, new Random()), LongRandom(1000000000, 9999999999, new Random()), _firstNames[new Random().Next(0, _firstNames.Length)] + " " + _lastNames[new Random().Next(0, _lastNames.Length)], DateTime.MaxValue);
             }
             return null;
         }
