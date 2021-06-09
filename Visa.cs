@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace MyBanker
 {
-    class Visa
+    public class Visa : Card, IWithdrawalLimit
     {
+        public Visa(ulong accountNumber, ulong cardNumber, string cardHolderName, DateTime expiration) : base(accountNumber, cardNumber, cardHolderName, expiration)
+        {
+            AccountNumber = accountNumber;
+            CardNumber = Convert.ToUInt64($"4{cardNumber}");
+            CardHolderName = cardHolderName;
+            Expiration = expiration;
+        }
+        void IWithdrawalLimit.WithdrawalLimit()
+        {
+            // Limit
+        }
     }
 }

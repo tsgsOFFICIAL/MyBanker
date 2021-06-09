@@ -9,21 +9,35 @@ namespace MyBanker
     public class Card
     {
         #region Attributes
-        public int AccountNumber { get; private set; } // Account Number
-        public short RegistrationNumber { get; private set; } // Registration number
-        public short SecurityNumber { get; private set; } // CVC, never used, but used in real life
-        public string CardHolderName { get; private set; } // Card holders full name
-        public decimal Balance { get; private set; } // The cards balance
-        public long MaxWithdrawal { get; private set; } // Maximum allowed withdrawal
-        public ulong CardNumber { get; private set; } // 16 or 19 digits
-        public DateTime Expiration { get; private set; } // Expiration date for the card
+        public ulong AccountNumber { get; protected set; } // Account Number
+        public short RegistrationNumber { get; protected set; } // Registration number
+        public short SecurityNumber { get; protected set; } // CVC, never used, but used in real life
+        public string CardHolderName { get; protected set; } // Card holders full name
+        public decimal Balance { get; protected set; } // The cards balance
+        public ulong CardNumber { get; protected set; } // 16 or 19 digits
+        public DateTime Expiration { get; protected set; } // Expiration date for the card
+        public enum CardType
+        {
+            DebitCard,
+            Mastercard,
+            Maestro,
+            Visa,
+            VisaElectron
+        }
         #endregion
         // Constructor
-        public Card(short registrationNumber, int accountNumber, short securityNumber, ulong cardNumber, string cardHolderName, DateTime expiration)
+        public Card(short registrationNumber, ulong accountNumber, short securityNumber, ulong cardNumber, string cardHolderName, DateTime expiration)
         {
             RegistrationNumber = registrationNumber;
             AccountNumber = accountNumber;
             SecurityNumber = securityNumber;
+            CardNumber = cardNumber;
+            CardHolderName = cardHolderName;
+            Expiration = expiration;
+        }
+        public Card(ulong accountNumber, ulong cardNumber, string cardHolderName, DateTime expiration)
+        {
+            AccountNumber = accountNumber;
             CardNumber = cardNumber;
             CardHolderName = cardHolderName;
             Expiration = expiration;
